@@ -1,48 +1,159 @@
+//using UnityEngine;
+
+//public class MovimientoJugador : MonoBehaviour
+//{
+//    Rigidbody2D rb;
+//    bool isGrounded;
+//    Animator animationPlayer;
+//    public float speed = 5f;
+//    public float jumpForce = 7f;
+//    private bool bajoAtaque = false;
+//    private int vidas = 3;
+//    private VidaUIControlador controladorVida = null;
+
+//    public int getVida()
+//    { 
+//        return vidas; 
+//    }
+
+//    // Start is called once before the first execution of Update after the MonoBehaviour is created
+//    void Start()
+//    {
+//        rb = GetComponent<Rigidbody2D>();
+//        animationPlayer = GetComponent<Animator>();
+//        controladorVida = GetComponentInChildren<VidaUIControlador>();
+//    }
+
+//    // Update is called once per frame
+//    void Update()
+//    {
+//        float moveInput = Input.GetAxis("Horizontal");
+//        rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
+//        if (!bajoAtaque)
+//        {
+//            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+//            {
+//                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+//                isGrounded = false;
+//            }
+//            else if (Input.GetAxis("Horizontal") != 0 && Input.GetAxisRaw("Horizontal") != 0)
+//            {
+//                rb.linearVelocityX = 5f * Input.GetAxis("Horizontal");
+
+//                transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal"), 1, 1);
+//            }
+//        }
+//        animationPlayer.SetFloat("movimiento", Mathf.Abs(Input.GetAxis("Horizontal")));
+//        animationPlayer.SetBool("estaSuelo", isGrounded);
+//    }
+
+//    // Detecta si el jugador esta tocando el suelo
+//    void OnCollisionEnter2D(Collision2D collision)
+//    {
+//        if (collision.gameObject.CompareTag("Suelo")) // Asegarate de que el suelo tenga el tag "Ground"
+//        {
+//            isGrounded = true;
+//            bajoAtaque = false;
+//        }
+//    }
+
+//    public void serAtacado(Vector2 empuje)
+//    {
+//        bajoAtaque = true;
+//        rb.linearVelocity = empuje;
+//        vidas--;
+//        if (vidas <= 0)
+//        {
+//            Destroy(gameObject);
+//        }
+//        controladorVida.ActualizarVida(vidas);
+//    }
+//}
 
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class MovimientoJugador : MonoBehaviour
 {
+    Rigidbody2D rb;
+    bool isGrounded;
+    Animator animationPlayer;
+
     [Header("Movimiento")]
     public float speed = 5f;
     public float jumpForce = 7f;
 
-    private Rigidbody2D rb;
-    private bool isGrounded = false;
+    [Header("Vida")]
+    public int vidas = 3;
+    public VidaUIControlador controladorVida;
+
+    private bool bajoAtaque = false;
+
+    public int getVida()
+    {
+        return vidas;
+    }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animationPlayer = GetComponent<Animator>();
+
+        // Inicializar barra de vida en la UI
+        if (controladorVida != null)
+        {
+            controladorVida.ConfigurarVidaTotal(vidas);
+        }
     }
 
     void Update()
     {
-        // Movimiento horizontal
-        float move = Input.GetAxisRaw("Horizontal"); // A/D o Flechas
-        rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
+        float moveInput = Input.GetAxis("Horizontal");
+        rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
 
-        // Salto (solo si está en el suelo)
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (!bajoAtaque)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            // Salto
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                isGrounded = false;
+            }
+            // Movimiento lateral con flip
+            else if (Input.GetAxis("Horizontal") != 0 && Input.GetAxisRaw("Horizontal") != 0)
+            {
+                rb.linearVelocity = new Vector2(5f * Input.GetAxis("Horizontal"), rb.linearVelocity.y);
+                transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal"), 1, 1);
+            }
         }
+
+        // Animaciones
+        animationPlayer.SetFloat("movimiento", Mathf.Abs(Input.GetAxis("Horizontal")));
+        animationPlayer.SetBool("estaSuelo", isGrounded);
     }
 
-    // Detectar colisión con el suelo
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Suelo"))
         {
             isGrounded = true;
+            bajoAtaque = false;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public void serAtacado(Vector2 empuje)
     {
-        if (collision.gameObject.CompareTag("Suelo"))
+        bajoAtaque = true;
+        rb.linearVelocity = empuje;
+        vidas--;
+
+        if (vidas <= 0)
         {
-            isGrounded = false;
+            Destroy(gameObject);
+        }
+
+        if (controladorVida != null)
+        {
+            controladorVida.ActualizarVida(vidas);
         }
     }
 }
-
