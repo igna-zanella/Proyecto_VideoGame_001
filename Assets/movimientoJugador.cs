@@ -71,19 +71,22 @@
 //}
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovimientoJugador : MonoBehaviour
 {
     Rigidbody2D rb;
     bool isGrounded;
     Animator animationPlayer;
+    public Slider VidaUIControlador;
+
 
     [Header("Movimiento")]
     public float speed = 5f;
     public float jumpForce = 7f;
 
     [Header("Vida")]
-    public int vidas = 3;
+    public int vidas = 100;
     public VidaUIControlador controladorVida;
 
     private bool bajoAtaque = false;
@@ -92,6 +95,8 @@ public class MovimientoJugador : MonoBehaviour
     {
         return vidas;
     }
+
+
 
     void Start()
     {
@@ -129,6 +134,9 @@ public class MovimientoJugador : MonoBehaviour
         // Animaciones
         animationPlayer.SetFloat("movimiento", Mathf.Abs(Input.GetAxis("Horizontal")));
         animationPlayer.SetBool("estaSuelo", isGrounded);
+
+        VidaUIControlador.GetComponent<Slider>().value = vidas;
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
