@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      video-game-health-bar-icon-png 1_0: 6190148130277890141
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

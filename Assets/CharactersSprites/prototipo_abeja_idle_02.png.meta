@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      prototipo_abeja_idle_02_0: 786053689389509591
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hormiga_0: -3487753313974971596
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
