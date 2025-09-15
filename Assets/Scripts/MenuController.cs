@@ -18,5 +18,10 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
     
+    public void ActivarConfigSonido()
+    {
+       //SceneManager.UnloadSceneAsync("Menu");
+       //SceneManager.LoadScene("MenuSonido", LoadSceneMode.Additive);
+    }
     
 }
