@@ -122,6 +122,7 @@ public class MovimientoJugador : MonoBehaviour
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 isGrounded = false;
+                SoundFXController.Instance.JugadorSalto(transform);
             }
             // Movimiento lateral con flip
             else if (Input.GetAxis("Horizontal") != 0 && Input.GetAxisRaw("Horizontal") != 0)
