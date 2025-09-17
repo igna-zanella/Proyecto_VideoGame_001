@@ -618,6 +618,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 227621691}
     m_Modifications:
+    - target: {fileID: 3458762832520272047, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
+      propertyPath: menuSonido
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3458762832520272047, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
+      propertyPath: menuPrincipal
+      value: 
+      objectReference: {fileID: 4450679368149272349}
+    - target: {fileID: 3458762832520272047, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
+      propertyPath: menuSonidoPrefab
+      value: 
+      objectReference: {fileID: 5863857940750021692, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
     - target: {fileID: 4909444262715987019, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -702,11 +714,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 8922367490062638089, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActivarConfigSonido_B
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
+--- !u!1 &4450679368149272349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6785312988078758277, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
+  m_PrefabInstance: {fileID: 4450679368149272347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -629,6 +629,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0721dde49dff049a14f4cd2a301b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuPrincipal: {fileID: 8318648228625672582}
+  menuSonido: {fileID: 5863857940750021692, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
+  menuSonidoPrefab: {fileID: 5863857940750021692, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
+  volver: {fileID: 7674373420837619703, guid: a4898347729784e45b439031f5a15cff, type: 3}
 --- !u!1001 &6184031675288096717
 PrefabInstance:
   m_ObjectHideFlags: 0
