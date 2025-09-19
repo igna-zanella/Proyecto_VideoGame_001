@@ -15,7 +15,7 @@ public class MenuController : MonoBehaviour
 
     public void SalirJuego()
     {
-        Debug.LogWarning("Saliendo...");
+        //Debug.LogWarning("Saliendo...");
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
