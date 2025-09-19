@@ -583,6 +583,18 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: VolumenMusica
       objectReference: {fileID: 0}
+    - target: {fileID: 3191494408885742578, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3191494408885742578, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
+      propertyPath: m_MaxValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3191494408885742578, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
+      propertyPath: m_MinValue
+      value: -60
+      objectReference: {fileID: 0}
     - target: {fileID: 4118402229934984432, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
       propertyPath: m_Enabled
       value: 1
