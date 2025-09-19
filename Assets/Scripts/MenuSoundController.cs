@@ -14,9 +14,9 @@ public class MenuSoundController : MonoBehaviour
     {
         audioMixer.SetFloat("VolumenEfectos", nivel);
     } 
-    public void SonidoMusica(float nivel)
+    public void VolumenMusica(float nivel)
     {
-        audioMixer.SetFloat("SonidoMusica", nivel);
+        audioMixer.SetFloat("VolumenMusica", nivel);
     }
 
 }
