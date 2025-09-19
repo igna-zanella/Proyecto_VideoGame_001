@@ -346,10 +346,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 4763489044026925157}
   m_HandleRect: {fileID: 309816929257893612}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -60
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1195,10 +1195,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 570369607691051692}
   m_HandleRect: {fileID: 4360006278260068758}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -60
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1483,10 +1483,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 7773596210294518352}
   m_HandleRect: {fileID: 3000748734374963447}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -50
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1598,8 +1598,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPrincipal: {fileID: 0}
   menuSonido: {fileID: 5863857940750021692}
-  menuSonidoPrefab: {fileID: 5863857940750021692}
-  volver: {fileID: 7674373420837619703, guid: a4898347729784e45b439031f5a15cff, type: 3}
 --- !u!114 &3443638889473821596
 MonoBehaviour:
   m_ObjectHideFlags: 0
