@@ -86,7 +86,7 @@ public class MovimientoJugador : MonoBehaviour
     public float jumpForce = 7f;
 
     [Header("Vida")]
-    public int vidas = 100;
+    public int vidas = 10;
     public VidaUIControlador controladorVida;
 
     private bool bajoAtaque = false;
@@ -165,4 +165,21 @@ public class MovimientoJugador : MonoBehaviour
             controladorVida.ActualizarVida(vidas);
         }
     }
+
+    public void RecuperarVida(int cantidad)
+    {
+        vidas += cantidad;
+
+        // Evitar que la vida supere el máximo
+        if (vidas > controladorVida.getVidaTotal())
+        {
+            vidas = controladorVida.getVidaTotal();
+        }
+
+        if (controladorVida != null)
+        {
+            controladorVida.ActualizarVida(vidas);
+        }
+    }
+
 }

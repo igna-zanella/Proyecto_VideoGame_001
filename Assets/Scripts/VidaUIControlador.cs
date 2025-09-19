@@ -45,4 +45,10 @@ public class VidaUIControlador : MonoBehaviour
             imagenVida.fillAmount = (float)vidaActual / vidaTotal;
         }
     }
+
+    public int getVidaTotal()
+    {
+        return vidaTotal;
+    }
+
 }

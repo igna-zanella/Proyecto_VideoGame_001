@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Suelo
   - Jugador
+  - Pocion
   layers:
   - Default
   - TransparentFX
