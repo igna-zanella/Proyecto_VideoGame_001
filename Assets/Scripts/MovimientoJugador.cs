@@ -166,20 +166,40 @@ public class MovimientoJugador : MonoBehaviour
         }
     }
 
-    public void RecuperarVida(int cantidad)
+    //public void RecuperarVida(int cantidad)
+    //{
+    //    vidas += cantidad;
+
+    //    // Evitar que la vida supere el máximo
+    //    if (vidas > controladorVida.getVidaTotal())
+    //    {
+    //        vidas = controladorVida.getVidaTotal();
+    //    }
+
+    //    if (controladorVida != null)
+    //    {
+    //        controladorVida.ActualizarVida(vidas);
+    //    }
+    //}
+
+    public void RecibirCura(int cantidad)
     {
-        vidas += cantidad;
-
-        // Evitar que la vida supere el máximo
-        if (vidas > controladorVida.getVidaTotal())
+        // Solo curar si no está ya en el máximo
+        if (vidas < controladorVida.getVidaTotal())
         {
-            vidas = controladorVida.getVidaTotal();
-        }
+            vidas += cantidad;
 
-        if (controladorVida != null)
-        {
-            controladorVida.ActualizarVida(vidas);
+            if (vidas > controladorVida.getVidaTotal())
+            {
+                vidas = controladorVida.getVidaTotal();
+            }
+
+            if (controladorVida != null)
+            {
+                controladorVida.ActualizarVida(vidas);
+            }
         }
     }
+
 
 }
