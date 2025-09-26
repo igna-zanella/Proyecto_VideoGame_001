@@ -17,6 +17,7 @@ Packages/manifest.lock
 *.sln
 *.userprefs
 .idea/
+*.dwlt
 
 # Archivos temporales de Mac y Windows
 .DS_Store
