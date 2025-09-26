@@ -28,14 +28,13 @@ public class VidaUIControlador : MonoBehaviour
 
     void Start()
     {
-        // Buscar el objeto hijo llamado "Vida"
-        imagenVida = transform.Find("Vida").GetComponent<Image>();
-    }
+        // tomar el componente Image del propio objeto
+        imagenVida = GetComponent<Image>();
 
-    public void ConfigurarVidaTotal(int vidaInicial)
-    {
-        vidaTotal = vidaInicial;
-        ActualizarVida(vidaInicial);
+        // el total de vida lo debe configurar el jugador en Start
+
+        //vidaTotal = FindObjectOfType<MovimientoJugador>().getVida();
+        vidaTotal = FindFirstObjectByType<MovimientoJugador>().getVida();
     }
 
     public void ActualizarVida(int vidaActual)
@@ -44,5 +43,17 @@ public class VidaUIControlador : MonoBehaviour
         {
             imagenVida.fillAmount = (float)vidaActual / vidaTotal;
         }
+    }
+
+    public int getVidaTotal()
+    {
+        return vidaTotal;
+    }
+
+    // Permite al jugador configurar explícitamente la vida total
+    public void ConfigurarVidaTotal(int total)
+    {
+        vidaTotal = total;
+        ActualizarVida(total);
     }
 }
