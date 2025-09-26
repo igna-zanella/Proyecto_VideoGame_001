@@ -33,8 +33,8 @@ public class VidaUIControlador : MonoBehaviour
 
         // el total de vida lo debe configurar el jugador en Start
 
-        vidaTotal = FindObjectOfType<MovimientoJugador>().getVida();
-        //vidaTotal = FindFirstObjectByType<MovimientoJugador>().getVida();
+        //vidaTotal = FindObjectOfType<MovimientoJugador>().getVida();
+        vidaTotal = FindFirstObjectByType<MovimientoJugador>().getVida();
     }
 
     public void ActualizarVida(int vidaActual)
