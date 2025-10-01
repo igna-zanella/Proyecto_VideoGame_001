@@ -118,7 +118,7 @@ public class MovimientoJugador : MonoBehaviour
         if (!bajoAtaque)
         {
             // Salto
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 isGrounded = false;
