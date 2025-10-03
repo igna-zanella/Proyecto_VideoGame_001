@@ -9,10 +9,10 @@ public class DanioAguaInstantaneo : MonoBehaviour
         if (jugador != null)
         {
             // Quita toda la vida de una sola vez
-            //jugador.serAtacado(Vector2.zero);
+            jugador.serAtacado(Vector2.zero);
 
             // Opción más directa: destruir al jugador
-             Destroy(jugador.gameObject);
+            //Destroy(jugador.gameObject);
         }
     }
 }
