@@ -152,6 +152,37 @@ public class MovimientoJugador : MonoBehaviour
             }
         }
     }
+    public void MorirEnLava()
+    {
+        this.enabled = false; // Desactivar controles
 
+        EfectoMuerteLava efecto = GetComponent<EfectoMuerteLava>();
+        if (efecto != null)
+        {
+            StartCoroutine(efecto.Quemarse(() =>
+            {
+                NotificarMuerte();
+                this.enabled = true; // Reactivar controles tras respawn
+            }));
+        }
+        else
+        {
+            // Si no hay efecto, al menos notificar muerte directo
+            NotificarMuerte();
+            this.enabled = true;
+        }
+    }
+
+    private void NotificarMuerte()
+    {
+        GameUIController ui = FindFirstObjectByType<GameUIController>();
+        if (ui != null)
+        {
+            ui.JugadorMurio();
+        }
+
+        // Reactivar controles al respawnear
+        this.enabled = true;
+    }
 
 }

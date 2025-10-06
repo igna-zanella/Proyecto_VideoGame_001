@@ -18,7 +18,8 @@ public class DanioAguaInstantaneo : MonoBehaviour
             if (ui != null)
             {
                 jugador.ReiniciarEnergia();
-                ui.JugadorMurio();
+                //ui.JugadorMurio();
+                jugador.MorirEnLava();
             }
         }
     }
