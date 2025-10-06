@@ -9,10 +9,17 @@ public class DanioAguaInstantaneo : MonoBehaviour
         if (jugador != null)
         {
             // Quita toda la vida de una sola vez
-            jugador.serAtacado(Vector2.zero);
+            //jugador.serAtacado(Vector2.zero);
 
             // Opción más directa: destruir al jugador
             //Destroy(jugador.gameObject);
+            // Avisamos al GameUIController de que el jugador murió
+            GameUIController ui = FindFirstObjectByType<GameUIController>();
+            if (ui != null)
+            {
+                jugador.ReiniciarEnergia();
+                ui.JugadorMurio();
+            }
         }
     }
 }
