@@ -10151,7 +10151,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 2.525, y: 2.725, z: 0}
+  m_ChunkCullingBounds: {x: 0.71000004, y: 0.78999996, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -10451,7 +10451,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3900073620398890764, guid: f339adf8f36c5b34b81b875f44ce308a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.227796
+      value: 6.5701194
       objectReference: {fileID: 0}
     - target: {fileID: 3900073620398890764, guid: f339adf8f36c5b34b81b875f44ce308a, type: 3}
       propertyPath: m_LocalScale.y
@@ -10459,7 +10459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3900073620398890764, guid: f339adf8f36c5b34b81b875f44ce308a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 150.8584
+      value: 150.5297
       objectReference: {fileID: 0}
     - target: {fileID: 3900073620398890764, guid: f339adf8f36c5b34b81b875f44ce308a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -63073,7 +63073,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8228515101355275385, guid: 4ef4fcde93627b44ba349affe144ebcc, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 46e8e94e5ce958548a81786f6ad7a0fa, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 46e8e94e5ce958548a81786f6ad7a0fa, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
