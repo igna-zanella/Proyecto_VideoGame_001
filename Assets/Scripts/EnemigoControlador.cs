@@ -1,4 +1,5 @@
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class EnemigoControlador : MonoBehaviour
 {
@@ -9,63 +10,109 @@ public class EnemigoControlador : MonoBehaviour
     [SerializeField] private float fuerzaEmpujeY = 2.5f;
     [SerializeField] private float velocidadX = 5f;
     private Animator animatorEnemigo;
+    private SpriteRenderer spriteRenderer;
+
+    private int golpesRecibidos = 0;
+    private bool estaParpadeando = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animatorEnemigo = GetComponent<Animator>();
-        //busca al jugador
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         jugadorTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void FixedUpdate()
     {
+        if (golpesRecibidos > 0) return; // mientras está herido, no se mueve
+
         float direccion = 0f;
-        //verifica si existe el jugador y esta dentro de la distancia para atacar
+
         if (jugadorTransform && Vector2.Distance(jugadorTransform.position, transform.position) < distanciaAtaque)
         {
-            Debug.Log("ATACAR");
-            //-1,0,1
             direccion = Mathf.Sign(jugadorTransform.position.x - transform.position.x);
             rb.linearVelocity = new Vector2(velocidadX * direccion, rb.linearVelocityY);
-            if (direccion != 0)
-            {
-                //actualiza la direccion del sprite enemigo hacia el jugador
-                transform.localScale = new Vector3(-direccion, 1, 1);
-            }
-        }
-        animatorEnemigo.SetFloat("movimientoEnemigo", direccion);
-    }
 
+            if (direccion != 0)
+                transform.localScale = new Vector3(-direccion, 1, 1);
+        }
+
+        if (animatorEnemigo)
+            animatorEnemigo.SetFloat("movimientoEnemigo", Mathf.Abs(rb.linearVelocity.x));
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        float direccionEmpuje = 0f;
-        Vector2 fuerzaEmpuje;
         if (collision.gameObject.CompareTag("Player"))
         {
-            //-1,0,1
-            direccionEmpuje = Mathf.Sign(collision.gameObject.transform.position.x - transform.position.x);
-            //genera una fuerza de empuje y hacia arriba para el jugador al impactar
-            fuerzaEmpuje = new Vector2(direccionEmpuje * fuerzaEmpujeX, fuerzaEmpujeY);
-            //usa el comportamiento serAtacado del script MovimientoJugador
+            // Verificamos si el jugador viene desde arriba
+            float alturaJugador = collision.transform.position.y;
+            float alturaEnemigo = transform.position.y;
+
+            // Si el jugador está más alto que el enemigo → no recibe daño
+            if (alturaJugador > alturaEnemigo + 0.2f) return;
+
+            // Si no, aplica daño
+            float direccionEmpuje = Mathf.Sign(collision.gameObject.transform.position.x - transform.position.x);
+            Vector2 fuerzaEmpuje = new Vector2(direccionEmpuje * fuerzaEmpujeX, fuerzaEmpujeY);
             collision.gameObject.GetComponent<MovimientoJugador>().serAtacado(fuerzaEmpuje);
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = new Color(255, 0, 0);
-        //Muestra el rango de distancia para el ataque con el jugador
-        Gizmos.DrawWireSphere(transform.position, distanciaAtaque);
-    }
-
+    // Detecta el golpe en la cabeza del enemigo
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //destruye el objeto Enemigo que detecta la colision
-            Destroy(gameObject);
+            golpesRecibidos++;
+
+            if (golpesRecibidos == 1)
+            {
+                // Primer golpe: parpadea y se empuja hacia atrás
+                if (!estaParpadeando)
+                    StartCoroutine(ReaccionarAlGolpe());
+            }
+            else if (golpesRecibidos >= 2)
+            {
+                Destroy(gameObject); // Segundo golpe: muerte
+            }
         }
+    }
+
+    private IEnumerator ReaccionarAlGolpe()
+    {
+        estaParpadeando = true;
+
+        // retroceso físico
+        float direccionEmpuje = jugadorTransform != null
+            ? Mathf.Sign(transform.position.x - jugadorTransform.position.x)
+            : 1f;
+        rb.linearVelocity = new Vector2(direccionEmpuje * 4f, 2f);
+
+        // buscamos el material (es independiente del Animator)
+        Material material = spriteRenderer.material;
+        Color colorOriginal = material.color;
+
+        float duracion = 2f;
+        float tiempo = 0f;
+        bool encendido = false;
+
+        while (tiempo < duracion)
+        {
+            tiempo += Time.deltaTime;
+            encendido = !encendido;
+            material.color = encendido ? new Color(1f, 0.3f, 0.3f) : colorOriginal;
+            yield return new WaitForSeconds(0.15f);
+        }
+
+        material.color = colorOriginal;
+        estaParpadeando = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, distanciaAtaque);
     }
 }
