@@ -102,8 +102,8 @@ public class EnemigoControlador : MonoBehaviour
         {
             tiempo += Time.deltaTime;
             encendido = !encendido;
-            material.color = encendido ? new Color(1f, 0.3f, 0.3f) : colorOriginal;
-            yield return new WaitForSeconds(0.15f);
+            material.color = encendido ? new Color(1f, 0.3f, 0.3f, 0.4f) : colorOriginal;
+            yield return new WaitForSeconds(0.35f);
         }
 
         material.color = colorOriginal;
