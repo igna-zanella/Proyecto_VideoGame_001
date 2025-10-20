@@ -1007,6 +1007,10 @@ PrefabInstance:
       propertyPath: menuSonidoPrefab
       value: 
       objectReference: {fileID: 5863857940750021692, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
+    - target: {fileID: 3791026917965547213, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4909444262715987019, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
