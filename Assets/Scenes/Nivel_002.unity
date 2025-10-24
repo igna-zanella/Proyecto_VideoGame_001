@@ -3870,7 +3870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8223676650087097481, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: m_Name
-      value: Enemigo002 (1)
+      value: Enemigo002 (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4181,6 +4181,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2084176574}
     m_Modifications:
+    - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
+      propertyPath: rangoDisparo
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
+      propertyPath: bolasPorSegundo
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19649797979648515, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: m_LocalPosition.x
       value: 46.01
@@ -4223,7 +4231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8223676650087097481, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: m_Name
-      value: Enemigo002 (1)
+      value: Enemigo002 (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4238,6 +4246,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2084176574}
     m_Modifications:
+    - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
+      propertyPath: rangoDisparo
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
+      propertyPath: bolasPorSegundo
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19649797979648515, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: m_LocalPosition.x
       value: 43.95
@@ -4280,7 +4296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8223676650087097481, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: m_Name
-      value: Enemigo002
+      value: Enemigo002 (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5500,7 +5516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8223676650087097481, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: m_Name
-      value: Enemigo002
+      value: Enemigo002 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6492,6 +6508,14 @@ PrefabInstance:
     - target: {fileID: 1017550994879285508, guid: 4cbdbd8da59d4c44ea10f93e85389ed6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2625470784706010724, guid: 4cbdbd8da59d4c44ea10f93e85389ed6, type: 3}
+      propertyPath: m_Size.y
+      value: 0.41314125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2625470784706010724, guid: 4cbdbd8da59d4c44ea10f93e85389ed6, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.29342937
       objectReference: {fileID: 0}
     - target: {fileID: 8377945147834035720, guid: 4cbdbd8da59d4c44ea10f93e85389ed6, type: 3}
       propertyPath: m_Name
@@ -13725,6 +13749,16 @@ Tilemap:
       m_TileIndex: 18
       m_TileSpriteIndex: 16
       m_TileMatrixIndex: 3
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 50, y: -32, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 3
+      m_TileSpriteIndex: 10
+      m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -37737,7 +37771,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: f2bb1f2bc0e758c4382b66e3883af84e, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 56b4325bd90dd874795bebd1be89fd70, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 06ef76bb3ead25445b510912aaf3cdda, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: a9734f6ec162dda46805c86aa6d8145d, type: 2}
@@ -37806,7 +37840,7 @@ Tilemap:
     m_Data: {fileID: -53286135, guid: 5d2e9979fdef5814b88986488e9f2709, type: 3}
   - m_RefCount: 11
     m_Data: {fileID: 552972367, guid: 5d2e9979fdef5814b88986488e9f2709, type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {fileID: 1708364154, guid: 5d2e9979fdef5814b88986488e9f2709, type: 3}
   - m_RefCount: 16
     m_Data: {fileID: -1330830381, guid: 5d2e9979fdef5814b88986488e9f2709, type: 3}
@@ -37841,7 +37875,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -215482734, guid: 5d2e9979fdef5814b88986488e9f2709, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 3089
+  - m_RefCount: 3090
     m_Data:
       e00: 1
       e01: 0
@@ -37932,7 +37966,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 3112
+  - m_RefCount: 3113
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -38177,6 +38211,16 @@ CompositeCollider2D:
         Y: -322333344
       - X: 505666656
         Y: -319666656
+      - X: 504407419
+        Y: -319666656
+      - X: 510333344
+        Y: -314333312
+      - X: 510333344
+        Y: -309666656
+      - X: 499666656
+        Y: -309666656
+      - X: 499666656
+        Y: -319666656
       - X: 463666656
         Y: -319666656
       - X: 463000000
@@ -38302,6 +38346,11 @@ CompositeCollider2D:
       - {x: 50.7, y: -32.83332}
       - {x: 50.699997, y: -32.23333}
       - {x: 50.56665, y: -31.966665}
+      - {x: 50.440815, y: -31.966602}
+      - {x: 51.033337, y: -31.43332}
+      - {x: 51.033306, y: -30.966665}
+      - {x: 49.966667, y: -30.966694}
+      - {x: 49.966637, y: -31.966665}
       - {x: 46.36666, y: -31.966673}
       - {x: 46.3, y: -32.033344}
       - {x: 46.30003, y: -37.033337}
@@ -39345,7 +39394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3943742006058538608, guid: bbdd5d9e4a5e55f4caae51455feb7dda, type: 3}
       propertyPath: puntoA.y
-      value: -29
+      value: -29.5
       objectReference: {fileID: 0}
     - target: {fileID: 3943742006058538608, guid: bbdd5d9e4a5e55f4caae51455feb7dda, type: 3}
       propertyPath: puntoB.x
@@ -39353,7 +39402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3943742006058538608, guid: bbdd5d9e4a5e55f4caae51455feb7dda, type: 3}
       propertyPath: puntoB.y
-      value: -29
+      value: -29.5
       objectReference: {fileID: 0}
     - target: {fileID: 3943742006058538608, guid: bbdd5d9e4a5e55f4caae51455feb7dda, type: 3}
       propertyPath: velocidad
@@ -39365,7 +39414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5727923686703559155, guid: bbdd5d9e4a5e55f4caae51455feb7dda, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -29
+      value: -29.5
       objectReference: {fileID: 0}
     - target: {fileID: 5727923686703559155, guid: bbdd5d9e4a5e55f4caae51455feb7dda, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39588,7 +39637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8223676650087097481, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: m_Name
-      value: Enemigo002 (2)
+      value: Enemigo002 (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
