@@ -17,38 +17,36 @@ public class PlataformaAscensor : MonoBehaviour
 
     void Update()
     {
-        // Si el jugador está encima y la plataforma no está moviéndose, inicia el ciclo
-        //if (jugadorSobrePlataforma && !enMovimiento)
-        //{
-        //    StartCoroutine(MoverAscensor());
-        //}
-        if (!enMovimiento)
+        if (jugadorSobrePlataforma && !enMovimiento)
         {
             StartCoroutine(MoverAscensor());
         }
-
     }
-
 
     private IEnumerator MoverAscensor()
     {
         enMovimiento = true;
 
-        // Determinar punto de destino
-        Vector3 destino = moviendoArriba ? puntoA.position : puntoB.position;
-
-        // Movimiento hasta destino
+        // Primer tramo: subir
+        Vector3 destino = puntoB.position;
         while (Vector3.Distance(transform.position, destino) > 0.05f)
         {
             transform.position = Vector3.MoveTowards(transform.position, destino, velocidad * Time.deltaTime);
             yield return null;
         }
 
-        // Esperar un momento
         yield return new WaitForSeconds(tiempoDeEspera);
 
-        // Cambiar dirección
-        moviendoArriba = !moviendoArriba;
+        // Segundo tramo: bajar
+        destino = puntoA.position;
+        while (Vector3.Distance(transform.position, destino) > 0.05f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, destino, velocidad * Time.deltaTime);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(tiempoDeEspera);
+
         enMovimiento = false;
     }
 
