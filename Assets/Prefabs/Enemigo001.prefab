@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7586561872287332548}
   m_Layer: 0
   m_Name: Enemigo001
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,4 +238,4 @@ MonoBehaviour:
   distanciaAtaque: 1.8
   fuerzaEmpujeX: 2.11
   fuerzaEmpujeY: 0.91
-  velocidadX: 1.86
+  velocidadX: 2.16

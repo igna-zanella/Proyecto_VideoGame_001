@@ -16,6 +16,7 @@ public class GameUIController : MonoBehaviour
     [Header("Checkpoint")]
     private Vector3 checkpoint;
     private MovimientoJugador jugador;
+    
 
     void Start()
     {
@@ -59,7 +60,8 @@ public class GameUIController : MonoBehaviour
         Debug.Log("Checkpoint actualizado en: " + pos);
     }
 
-    public void JugadorMurio()
+    
+        public void JugadorMurio()
     {
         vidasRestantes--;
 
@@ -71,7 +73,7 @@ public class GameUIController : MonoBehaviour
         else
         {
             Debug.Log("Game Over");
-            SceneManager.LoadScene("MenuInicio"); // ajusta el nombre de tu escena
+            SceneManager.LoadScene("MenuInicio"); 
         }
     }
 

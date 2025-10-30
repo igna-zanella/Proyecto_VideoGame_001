@@ -9,7 +9,7 @@ public class EnemigoControlador2 : MonoBehaviour
     [SerializeField] private float fuerzaEmpujeX = 5f;
     [SerializeField] private float fuerzaEmpujeY = 2.5f;
     [SerializeField] private float velocidadX = 5f;
-    private Animator animatorEnemigo;
+    private Animator animatorEnemigo2;
     private SpriteRenderer spriteRenderer;
 
     [Header("Ataque a distancia")]
@@ -28,7 +28,7 @@ public class EnemigoControlador2 : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animatorEnemigo = GetComponent<Animator>();
+        animatorEnemigo2 = GetComponent<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         jugadorTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -51,8 +51,8 @@ public class EnemigoControlador2 : MonoBehaviour
                 transform.localScale = new Vector3(-direccion, 1, 1);
         }
 
-        if (animatorEnemigo)
-            animatorEnemigo.SetFloat("movimientoEnemigo", Mathf.Abs(rb.linearVelocity.x));
+        if (animatorEnemigo2)
+            animatorEnemigo2.SetFloat("movimientoEnemigo2", Mathf.Abs(rb.linearVelocity.x));
 
         // --- Disparo de proyectil ---
         if (jugadorTransform && Vector2.Distance(jugadorTransform.position, transform.position) <= rangoDisparo)
