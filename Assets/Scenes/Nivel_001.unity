@@ -7805,7 +7805,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1879333865}
-  - {fileID: 1295830370}
   - {fileID: 1586987193}
   - {fileID: 1942986190}
   m_Father: {fileID: 0}
@@ -71378,7 +71377,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1789492202792222907, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4397934812783216912, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1295830370}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
 --- !u!1 &1879333864 stripped
@@ -73117,7 +73119,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 584313161}
+    m_TransformParent: {fileID: 1879333865}
     m_Modifications:
     - target: {fileID: 196046725458932853, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
       propertyPath: m_fontSize
@@ -73201,7 +73203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4909444262715987019, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -555
+      value: -540
       objectReference: {fileID: 0}
     - target: {fileID: 4909444262715987019, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
