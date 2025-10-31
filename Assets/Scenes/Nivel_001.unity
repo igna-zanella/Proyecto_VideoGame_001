@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc15fde0f72cd740bdeee3a3101196f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuSonido: {fileID: 1879333864}
+  menuSonido: {fileID: 0}
   vidasTotales: 3
 --- !u!4 &48901173
 Transform:
@@ -71383,11 +71383,6 @@ PrefabInstance:
       addedObject: {fileID: 1295830370}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
---- !u!1 &1879333864 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5863857940750021692, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
-  m_PrefabInstance: {fileID: 1879333863}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1879333865 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4397934812783216912, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
@@ -73228,6 +73223,10 @@ PrefabInstance:
     - target: {fileID: 5478857852370776795, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -83
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001437712897786481, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SalirJuego
       objectReference: {fileID: 0}
     - target: {fileID: 6775675949028912780, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
       propertyPath: m_SizeDelta.x
