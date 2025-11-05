@@ -1,3 +1,5 @@
+//
+//BLOQUE COMENTADO ANTERIORMENTE
 //using UnityEngine;
 //using UnityEngine.UI;
 
@@ -16,6 +18,49 @@
 //        imagenVida.fillAmount = (float)vidaActual / vidaTotal;
 //    }
 
+//
+//
+//}
+//FIN BLOQUE COMENTADO ANTERIORMENTE
+
+//using UnityEngine;
+//using UnityEngine.UI;
+
+//public class VidaUIControlador : MonoBehaviour
+//{
+//    private Image imagenVida;
+//    private int vidaTotal;
+
+//    void Start()
+//    {
+//        // tomar el componente Image del propio objeto
+//        imagenVida = GetComponent<Image>();
+
+//        // el total de vida lo debe configurar el jugador en Start
+
+//        //vidaTotal = FindObjectOfType<MovimientoJugador>().getVida();
+//        vidaTotal = FindFirstObjectByType<MovimientoJugador>().getVida();
+//    }
+
+//    public void ActualizarVida(int vidaActual)
+//    {
+//        if (imagenVida != null && vidaTotal > 0)
+//        {
+//            imagenVida.fillAmount = (float)vidaActual / vidaTotal;
+//        }
+//    }
+
+//    public int getVidaTotal()
+//    {
+//        return vidaTotal;
+//    }
+
+//    // Permite al jugador configurar explícitamente la vida total
+//    public void ConfigurarVidaTotal(int total)
+//    {
+//        vidaTotal = total;
+//        ActualizarVida(total);
+//    }
 //}
 
 using UnityEngine;
@@ -23,25 +68,42 @@ using UnityEngine.UI;
 
 public class VidaUIControlador : MonoBehaviour
 {
-    private Image imagenVida;
-    private int vidaTotal;
+    private Slider sliderVida;
+    private int vidaTotal = 10; // valor por defecto
 
     void Start()
     {
-        // tomar el componente Image del propio objeto
-        imagenVida = GetComponent<Image>();
+        sliderVida = GetComponent<Slider>();
 
-        // el total de vida lo debe configurar el jugador en Start
+        var jugador = FindFirstObjectByType<MovimientoJugador>();
+        if (jugador != null)
+        {
+            vidaTotal = jugador.GetVida();
+        }
 
-        //vidaTotal = FindObjectOfType<MovimientoJugador>().getVida();
-        vidaTotal = FindFirstObjectByType<MovimientoJugador>().getVida();
+        if (sliderVida != null)
+        {
+            sliderVida.maxValue = vidaTotal;
+            sliderVida.value = vidaTotal;
+        }
     }
 
     public void ActualizarVida(int vidaActual)
     {
-        if (imagenVida != null && vidaTotal > 0)
+        if (sliderVida != null)
         {
-            imagenVida.fillAmount = (float)vidaActual / vidaTotal;
+            sliderVida.value = vidaActual;
+        }
+    }
+
+    // Permite al jugador configurar explícitamente la vida total
+    public void ConfigurarVidaTotal(int total)
+    {
+        vidaTotal = total;
+        if (sliderVida != null)
+        {
+            sliderVida.maxValue = total;
+            sliderVida.value = total;
         }
     }
 
@@ -49,11 +111,5 @@ public class VidaUIControlador : MonoBehaviour
     {
         return vidaTotal;
     }
-
-    // Permite al jugador configurar explícitamente la vida total
-    public void ConfigurarVidaTotal(int total)
-    {
-        vidaTotal = total;
-        ActualizarVida(total);
-    }
 }
+

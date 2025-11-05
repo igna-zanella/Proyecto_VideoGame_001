@@ -25,6 +25,10 @@ public class Boss : MonoBehaviour
     private int golpesRecibidos = 0;
     private bool estaParpadeando = false;
 
+    private int golpesParaMorir = 8;
+    private float tiempoParpadeoBase = 0.25f;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -86,54 +90,92 @@ public class Boss : MonoBehaviour
     }
 
     // Detecta el golpe en la cabeza del enemigo
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        golpesRecibidos++;
+
+    //        if (golpesRecibidos == 1)
+    //        {
+    //            // Primer golpe: parpadea y se empuja hacia atrás
+    //            if (!estaParpadeando)
+    //                StartCoroutine(ReaccionarAlGolpe());
+    //        }
+    //        else if (golpesRecibidos >= 2)
+    //        {
+    //            Destroy(gameObject); // Segundo golpe: muerte
+    //        }
+    //    }
+    //}
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            golpesRecibidos++;
+        if (!collision.CompareTag("Player")) return;
 
-            if (golpesRecibidos == 1)
-            {
-                // Primer golpe: parpadea y se empuja hacia atrás
-                if (!estaParpadeando)
-                    StartCoroutine(ReaccionarAlGolpe());
-            }
-            else if (golpesRecibidos >= 2)
-            {
-                Destroy(gameObject); // Segundo golpe: muerte
-            }
+        golpesRecibidos++;
+
+        if (!estaParpadeando)
+            StartCoroutine(ReaccionarAlGolpe());
+
+        if (golpesRecibidos >= golpesParaMorir)
+        {
+            Morir();
         }
     }
+
+    //private IEnumerator ReaccionarAlGolpe()
+    //{
+    //    estaParpadeando = true;
+
+    //    // retroceso físico
+    //    float direccionEmpuje = jugadorTransform != null
+    //        ? Mathf.Sign(transform.position.x - jugadorTransform.position.x)
+    //        : 1f;
+    //    rb.linearVelocity = new Vector2(direccionEmpuje * 4f, 2f);
+
+    //    // buscamos el material (es independiente del Animator)
+    //    Material material = spriteRenderer.material;
+    //    Color colorOriginal = material.color;
+
+    //    float duracion = 2f;
+    //    float tiempo = 0f;
+    //    bool encendido = false;
+
+    //    while (tiempo < duracion)
+    //    {
+    //        tiempo += Time.deltaTime;
+    //        encendido = !encendido;
+    //        material.color = encendido ? new Color(1f, 0.3f, 0.3f, 0.4f) : colorOriginal;
+    //        yield return new WaitForSeconds(0.35f);
+    //    }
+
+    //    material.color = colorOriginal;
+    //    estaParpadeando = false;
+    //}
 
     private IEnumerator ReaccionarAlGolpe()
     {
         estaParpadeando = true;
+        float duracion = Mathf.Clamp(1.5f + (golpesRecibidos * 0.3f), 1.5f, 4f);
 
-        // retroceso físico
-        float direccionEmpuje = jugadorTransform != null
-            ? Mathf.Sign(transform.position.x - jugadorTransform.position.x)
-            : 1f;
-        rb.linearVelocity = new Vector2(direccionEmpuje * 4f, 2f);
-
-        // buscamos el material (es independiente del Animator)
-        Material material = spriteRenderer.material;
-        Color colorOriginal = material.color;
-
-        float duracion = 2f;
+        Color colorOriginal = spriteRenderer.color;
         float tiempo = 0f;
-        bool encendido = false;
+        bool alternar = false;
 
         while (tiempo < duracion)
         {
             tiempo += Time.deltaTime;
-            encendido = !encendido;
-            material.color = encendido ? new Color(1f, 0.3f, 0.3f, 0.4f) : colorOriginal;
-            yield return new WaitForSeconds(0.35f);
+            alternar = !alternar;
+            spriteRenderer.color = alternar ? new Color(1f, 0.3f, 0.3f) : colorOriginal;
+            yield return new WaitForSeconds(tiempoParpadeoBase);
         }
 
-        material.color = colorOriginal;
+        spriteRenderer.color = colorOriginal;
         estaParpadeando = false;
     }
+
+
 
     private void OnDrawGizmosSelected()
     {
@@ -162,5 +204,17 @@ public class Boss : MonoBehaviour
         transform.localScale = new Vector3(Mathf.Sign(direccion.x) * -1f, 1, 1);
     }
 
+    private void Morir()
+    {
+        Debug.Log("Boss derrotado 🐜💥");
+        Destroy(gameObject);
+
+        // Buscar el ascensor y activarlo
+        PlataformaAscensor02 ascensor = FindFirstObjectByType<PlataformaAscensor02>();
+        if (ascensor != null)
+        {
+            ascensor.enabled = true;
+        }
+    }
 
 }

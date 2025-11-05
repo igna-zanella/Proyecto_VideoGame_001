@@ -15,6 +15,11 @@ public class PlataformaAscensor02 : MonoBehaviour
     private bool moviendoArriba = false;
     private bool enMovimiento = false;
 
+    void Start()
+    {
+        enabled = false; // El ascensor inicia inactivo
+    }
+
     void Update()
     {
         //if (jugadorSobrePlataforma && !enMovimiento)

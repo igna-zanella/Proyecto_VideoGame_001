@@ -1,74 +1,88 @@
-
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using System.Collections;
 
 public class MovimientoJugador : MonoBehaviour
 {
-    Rigidbody2D rb;
-    bool isGrounded;
-    Animator animationPlayer;
-    public Slider VidaUIControlador;
+    [Header("Componentes")]
+    private Rigidbody2D rb;
+    private Animator anim;
+    private VidaUIControlador controladorVida;
 
-
-    [Header("Movimiento")]
+    [Header("Movimiento terrestre")]
     public float speed = 5f;
     public float jumpForce = 7f;
-
-    [Header("Vida")]
-    public int vidas = 10;
-    public VidaUIControlador controladorVida;
-
+    private bool isGrounded;
     private bool bajoAtaque = false;
 
-    public int getVida()
-    {
-        return vidas;
-    }
+    [Header("Vuelo")]
+    public bool puedeVolar = false;
+    public float velocidadVuelo = 5f;
+    public float limiteAltura = 15f;
 
+    [Header("Vida del jugador")]
+    [SerializeField] private int vidaMaxima = 10;
+    [SerializeField] private int vidaActual;
 
+    private GameUIController gameController;
+    private bool muriendoEnLava = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animationPlayer = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
+        controladorVida = FindFirstObjectByType<VidaUIControlador>();
+        gameController = FindFirstObjectByType<GameUIController>();
 
-        // Inicializar barra de vida en la UI
+        vidaActual = vidaMaxima;
+
         if (controladorVida != null)
-        {
-            controladorVida.ConfigurarVidaTotal(vidas);
-        }
+            controladorVida.ActualizarVida(vidaActual);
     }
 
     void Update()
     {
+        if (puedeVolar)
+            ControlarVuelo();
+        else
+            ControlarMovimientoTerrestre();
+
+        anim?.SetFloat("movimiento", Mathf.Abs(Input.GetAxis("Horizontal")));
+        anim?.SetBool("estaSuelo", isGrounded);
+    }
+
+    // ---------------- MOVIMIENTO ----------------
+    private void ControlarMovimientoTerrestre()
+    {
         float moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
 
-        if (!bajoAtaque)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded)
         {
-            // Salto
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-                isGrounded = false;
-                SoundFXController.Instance.JugadorSalto(transform);
-            }
-            // Movimiento lateral con flip
-            else if (Input.GetAxis("Horizontal") != 0 && Input.GetAxisRaw("Horizontal") != 0)
-            {
-                rb.linearVelocity = new Vector2(5f * Input.GetAxis("Horizontal"), rb.linearVelocity.y);
-                transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal"), 1, 1);
-            }
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            isGrounded = false;
+            SoundFXController.Instance?.JugadorSalto(transform);
         }
 
-        // Animaciones
-        animationPlayer.SetFloat("movimiento", Mathf.Abs(Input.GetAxis("Horizontal")));
-        animationPlayer.SetBool("estaSuelo", isGrounded);
-
-        VidaUIControlador.GetComponent<Slider>().value = vidas;
-
+        if (moveInput != 0)
+            transform.localScale = new Vector3(Mathf.Sign(moveInput), 1, 1);
     }
 
+    private void ControlarVuelo()
+    {
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
+
+        Vector2 movimiento = new Vector2(moveX, moveY) * velocidadVuelo;
+        rb.linearVelocity = movimiento;
+
+        if (transform.position.y > limiteAltura)
+            transform.position = new Vector3(transform.position.x, limiteAltura, transform.position.z);
+
+        if (moveX != 0)
+            transform.localScale = new Vector3(Mathf.Sign(moveX), 1, 1);
+    }
+
+    // ---------------- COLISIONES ----------------
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Suelo"))
@@ -78,111 +92,190 @@ public class MovimientoJugador : MonoBehaviour
         }
     }
 
-    public void serAtacado(Vector2 empuje)
+    // ---------------- DAÑO Y VIDA ----------------
+    public void SerAtacado(Vector2 empuje)
     {
+        if (bajoAtaque) return;
+
         bajoAtaque = true;
         rb.linearVelocity = empuje;
-        vidas--;
+        vidaActual--;
 
-        //if (vidas <= 0)
-        //{
-        //    Destroy(gameObject);
-        //}
-
-        //if (controladorVida != null)
-        //{
-        //    controladorVida.ActualizarVida(vidas);
-        //}
-        if (vidas <= 0)
-        {
-            vidas = 0;
-
-            GameUIController ui = FindFirstObjectByType<GameUIController>();
-            if (ui != null)
-            {
-                ui.JugadorMurio();
-            }
-            else
-            {
-                Destroy(gameObject); // fallback
-            }
-        }
-
-    }
-    public void ReiniciarEnergia()
-    {
-        vidas = controladorVida.getVidaTotal();
         if (controladorVida != null)
+            controladorVida.ActualizarVida(vidaActual);
+
+        if (vidaActual <= 0)
         {
-            controladorVida.ActualizarVida(vidas);
+            Morir();
         }
+
+        Invoke(nameof(ResetAtaque), 0.4f);
     }
 
-    //public void RecuperarVida(int cantidad)
-    //{
-    //    vidas += cantidad;
-
-    //    // Evitar que la vida supere el m�ximo
-    //    if (vidas > controladorVida.getVidaTotal())
-    //    {
-    //        vidas = controladorVida.getVidaTotal();
-    //    }
-
-    //    if (controladorVida != null)
-    //    {
-    //        controladorVida.ActualizarVida(vidas);
-    //    }
-    //}
-
-    public void RecibirCura(int cantidad)
+    private void ResetAtaque()
     {
-        // Solo curar si no est� ya en el m�ximo
-        if (vidas < controladorVida.getVidaTotal())
-        {
-            vidas += cantidad;
-
-            if (vidas > controladorVida.getVidaTotal())
-            {
-                vidas = controladorVida.getVidaTotal();
-            }
-
-            if (controladorVida != null)
-            {
-                controladorVida.ActualizarVida(vidas);
-            }
-        }
+        bajoAtaque = false;
     }
+
+    private void Morir()
+    {
+        if (gameController != null)
+            gameController.JugadorMurio();
+        else
+            Debug.LogWarning("[MovimientoJugador] GameUIController no encontrado.");
+    }
+
     public void MorirEnLava()
     {
-        this.enabled = false; // Desactivar controles
+        // Desactivar controles mientras se ejecuta el efecto
+        this.enabled = false;
 
         EfectoMuerteLava efecto = GetComponent<EfectoMuerteLava>();
         if (efecto != null)
         {
             StartCoroutine(efecto.Quemarse(() =>
             {
-                NotificarMuerte();
-                this.enabled = true; // Reactivar controles tras respawn
+                // Cuando termina el efecto, notificar al Game Controller
+                if (gameController != null)
+                {
+                    gameController.JugadorMurio();
+                }
+                else
+                {
+                    Debug.LogWarning("[MovimientoJugador] GameUIController no encontrado al morir en lava.");
+                }
+
+                // Reactivar controles después del respawn
+                this.enabled = true;
             }));
         }
         else
         {
-            // Si no hay efecto, al menos notificar muerte directo
-            NotificarMuerte();
+            // Si no existe el efecto, al menos notificar muerte directa
+            if (gameController != null)
+            {
+                gameController.JugadorMurio();
+            }
+
             this.enabled = true;
         }
     }
 
-    private void NotificarMuerte()
-    {
-        GameUIController ui = FindFirstObjectByType<GameUIController>();
-        if (ui != null)
-        {
-            ui.JugadorMurio();
-        }
 
-        // Reactivar controles al respawnear
-        this.enabled = true;
+
+    public void RecibirCura(int cantidad)
+    {
+        vidaActual = Mathf.Min(vidaActual + cantidad, vidaMaxima);
+        if (controladorVida != null)
+            controladorVida.ActualizarVida(vidaActual);
     }
+
+    public void ReiniciarEnergia()
+    {
+        vidaActual = vidaMaxima;
+        if (controladorVida != null)
+            controladorVida.ActualizarVida(vidaActual);
+
+        rb.linearVelocity = Vector2.zero;
+        bajoAtaque = false;
+
+        // 🟢 Restaurar opacidad del sprite si fue desvanecido por EfectoMuerteLava
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            Color c = sr.color;
+            c.a = 1f;
+            sr.color = c;
+        }
+    }
+
+    public int GetVida()
+    {
+        return vidaActual;
+    }
+
+    // ==========================================================
+    // 🧩 BLOQUE DE COMPATIBILIDAD COMPLETO
+    // ==========================================================
+
+    // Alias antiguos usados por enemigos, trampas y otros scripts
+    public void serAtacado(Vector2 empuje)
+    {
+        SerAtacado(empuje);
+    }
+
+    public void serAtacado()
+    {
+        SerAtacado(Vector2.zero);
+    }
+
+    public void RecibirDanio(int cantidad)
+    {
+        vidaActual -= cantidad;
+        if (vidaActual <= 0)
+            Morir();
+        else if (controladorVida != null)
+            controladorVida.ActualizarVida(vidaActual);
+    }
+
+    public void RecuperarEnergia(int cantidad)
+    {
+        RecibirCura(cantidad);
+    }
+
+    public void recuperarEnergia(int cantidad)
+    {
+        RecibirCura(cantidad);
+    }
+
+    public int getVida()
+    {
+        return GetVida();
+    }
+
+    public void MorirInstantaneamente()
+    {
+        Morir();
+    }
+
+    public void MorirInstantaneo()
+    {
+        Morir();
+    }
+
+    public void MorirEnAgua()
+    {
+        Morir();
+    }
+
+    public void MorirPorTrampa()
+    {
+        Morir();
+    }
+
+    public void RecibirCuraGradual(int cantidad)
+    {
+        RecibirCura(cantidad);
+    }
+
+    public void RecibirCuracion(int cantidad)
+    {
+        RecibirCura(cantidad);
+    }
+
+    // ------------------------------------------------------------
+    // 🪽 Método llamado por AlasPickup.cs para permitir el vuelo
+    // ------------------------------------------------------------
+    public void ActivarVuelo()
+    {
+        puedeVolar = true;
+        rb.gravityScale = 0f;
+
+        // Opcional: reproducir sonido o animación de alas
+        //SoundFXController.Instance?.ReproducirFX("AlasPickup");
+
+        Debug.Log("[MovimientoJugador] Vuelo activado: el jugador ahora puede volar.");
+    }
+
 
 }

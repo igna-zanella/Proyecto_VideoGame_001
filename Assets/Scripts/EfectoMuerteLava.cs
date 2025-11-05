@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -28,17 +28,17 @@ public class EfectoMuerteLava : MonoBehaviour
             // Interpola entre original y rojo
             sr.color = Color.Lerp(original, Color.red, t);
 
-            // Tambi�n baja la opacidad
+            // También baja la opacidad
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f - t);
 
             yield return null;
         }
 
-        // Restaurar color
-        sr.color = original;
+        // ❌ ANTES: Restaurar color original (hacía reaparecer el sprite)
+        // ✅ AHORA: Lo dejamos invisible
+        sr.color = new Color(original.r, original.g, original.b, 0f);
 
-        // Avisar que termin�
-        if (onFinish != null)
-            onFinish();
+        // Avisar que terminó
+        onFinish?.Invoke();
     }
 }

@@ -1,111 +1,80 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameUIController : MonoBehaviour
 {
-    [Header("Menú de sonido en el HUD")]
-    [SerializeField] private GameObject menuSonido;
-
-    private bool menuActivo = false;
+    [Header("Jugador")]
+    [SerializeField] private MovimientoJugador jugador;
+    [SerializeField] private Vector3 checkpointInicial;
+    private Vector3 checkpointActual;
 
     [Header("Vidas del jugador")]
     [SerializeField] private int vidasTotales = 3;
     private int vidasRestantes;
 
-    [Header("Checkpoint")]
-    private Vector3 checkpoint;
-    private MovimientoJugador jugador;
-
-    // Identificar la escena actual ---
-    private string escenaActual;
-
     void Start()
     {
-        if (menuSonido != null)
-            menuSonido.SetActive(false);
+        if (jugador == null)
+            jugador = FindFirstObjectByType<MovimientoJugador>();
 
+        checkpointActual = checkpointInicial;
         vidasRestantes = vidasTotales;
-
-        jugador = FindFirstObjectByType<MovimientoJugador>();
-        escenaActual = SceneManager.GetActiveScene().name;
-
-        if (jugador != null)
-        {
-            checkpoint = jugador.transform.position;
-        }
-
-        Debug.Log($"[GameUIController] Escena actual: {escenaActual}");
     }
 
-    void Update()
+    public void ActualizarCheckpoint(Vector3 nuevoPunto)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ToggleMenuSonido();
-        }
+        checkpointActual = nuevoPunto;
+        Debug.Log("[GameUIController] Checkpoint actualizado: " + nuevoPunto);
     }
 
-    public void ToggleMenuSonido()
-    {
-        if (menuSonido == null) return;
-
-        menuActivo = !menuActivo;
-        menuSonido.SetActive(menuActivo);
-        Time.timeScale = menuActivo ? 0f : 1f;
-    }
-
-    // --- Checkpoints ---
-    public void EstablecerCheckpoint(Vector3 pos)
-    {
-        checkpoint = pos;
-        Debug.Log("Checkpoint actualizado en: " + pos);
-    }
-
-    // --- Cuando el jugador muere ---
     public void JugadorMurio()
     {
         vidasRestantes--;
 
         if (vidasRestantes > 0)
         {
-            Debug.Log("Jugador respawnea. Vidas restantes: " + vidasRestantes);
-            RespawnJugador();
+            Debug.Log("[GameUIController] Jugador muriÃ³. Reiniciando desde checkpoint...");
+            StartCoroutine(RespawnCoroutine());
         }
         else
         {
-            Debug.Log("Game Over");
-
-            if (escenaActual == "Nivel_001")
-            {
-                SceneManager.LoadScene("Nivel_001"); // reinicia nivel 1
-            }
-            else if (escenaActual == "Nivel_002")
-            {
-                SceneManager.LoadScene("Nivel_002"); // reinicia nivel 2
-            }
-            else
-            {
-                // fallback genérico
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
+            Debug.Log("[GameUIController] Sin vidas restantes. Reiniciando nivel...");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
-    private void RespawnJugador()
+    private IEnumerator RespawnCoroutine()
     {
+        yield return new WaitForSeconds(1f); // pequeÃ±a pausa
+
         if (jugador == null)
-        {
             jugador = FindFirstObjectByType<MovimientoJugador>();
-        }
 
         if (jugador != null)
         {
-            jugador.transform.position = checkpoint;
+            jugador.transform.position = checkpointActual;
             jugador.ReiniciarEnergia();
+            Debug.Log("[GameUIController] Jugador respawneado en " + checkpointActual);
         }
         else
         {
-            Debug.LogWarning("[GameUIController] No se encontró el jugador para hacer respawn.");
+            Debug.LogWarning("[GameUIController] No se encontrÃ³ jugador para respawnear.");
         }
     }
+
+    public int GetVidasRestantes()
+    {
+        return vidasRestantes;
+    }
+
+    // ------------------------------------------------------------
+    // ðŸŽ¯ Compatibilidad con scripts antiguos de checkpoint
+    // ------------------------------------------------------------
+    public void EstablecerCheckpoint(Vector3 nuevoPunto)
+    {
+        ActualizarCheckpoint(nuevoPunto);
+    }
+
+
 }

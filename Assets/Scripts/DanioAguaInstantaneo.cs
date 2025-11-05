@@ -17,10 +17,34 @@ public class DanioAguaInstantaneo : MonoBehaviour
             GameUIController ui = FindFirstObjectByType<GameUIController>();
             if (ui != null)
             {
-                jugador.ReiniciarEnergia();
+                //jugador.ReiniciarEnergia();
                 //ui.JugadorMurio();
-                jugador.MorirEnLava();
+                //jugador.MorirEnLava();
+                collision.GetComponent<MovimientoJugador>()?.MorirEnLava();
+
             }
         }
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        MovimientoJugador jugador = collision.GetComponent<MovimientoJugador>();
+    //        if (jugador != null)
+    //        {
+    //            jugador.MorirEnLava();
+    //        }
+    //    }
+    //}
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{ 
+    //MovimientoJugador jugador = collision.GetComponent<MovimientoJugador>();
+    //    if (jugador != null)
+    //    {
+    //        jugador.MorirEnLava();
+    //    }
+    //}
+
 }
