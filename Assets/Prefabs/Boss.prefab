@@ -81,8 +81,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8416494161763685755, guid: 4cbd209d0f0f0194b872f7323d21270a, type: 3}
-  m_Color: {r: 0.90094113, g: 1, b: 0.41037738, a: 1}
+  m_Sprite: {fileID: -6248741079362886434, guid: 6505c421dcbda2e49bfd8dc5fb3f9dff, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -157,7 +157,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.2666667}
+    oldSize: {x: 6, y: 7.6}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
   fuerzaEmpujeX: 5
   fuerzaEmpujeY: 2.5
   velocidadX: 5
-  prefabBola: {fileID: 6673562693952533408, guid: f4667c370b6f9de479923a4c3b77cddf, type: 3}
+  prefabBola: {fileID: 8708990105194654830, guid: e8b03122afa72d54187f6c31df0de506, type: 3}
   velocidadBola: 5
   bolasPorSegundo: 1
   rangoDisparo: 8

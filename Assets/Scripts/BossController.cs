@@ -4,12 +4,12 @@ using System.Collections;
 public class Boss : MonoBehaviour
 {
     private Rigidbody2D rb;
-    [SerializeField] private float distanciaAtaque = 5f;
+    [SerializeField] private float distanciaAtaque = 12.08f;
     private Transform jugadorTransform;
     [SerializeField] private float fuerzaEmpujeX = 5f;
     [SerializeField] private float fuerzaEmpujeY = 2.5f;
-    [SerializeField] private float velocidadX = 5f;
-    private Animator animatorEnemigo2;
+    [SerializeField] private float velocidadX = 2f;
+    private Animator Boss02;
     private SpriteRenderer spriteRenderer;
 
     [Header("Ataque a distancia")]
@@ -32,7 +32,7 @@ public class Boss : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animatorEnemigo2 = GetComponent<Animator>();
+        Boss02 = GetComponent<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         jugadorTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -55,8 +55,8 @@ public class Boss : MonoBehaviour
                 transform.localScale = new Vector3(-direccion, 1, 1);
         }
 
-        if (animatorEnemigo2)
-            animatorEnemigo2.SetFloat("Boss02", Mathf.Abs(rb.linearVelocity.x));
+        if (Boss02)
+            Boss02.SetFloat("Boss02", Mathf.Abs(rb.linearVelocity.x));
 
         // --- Disparo de proyectil ---
         if (jugadorTransform && Vector2.Distance(jugadorTransform.position, transform.position) <= rangoDisparo)
@@ -194,7 +194,7 @@ public class Boss : MonoBehaviour
         Vector2 direccion = jugadorTransform.position - transform.position;
 
         // Configurar el proyectil
-        BolaEnemigo scriptBola = bola.GetComponent<BolaEnemigo>();
+        BolaBoss scriptBola = bola.GetComponent<BolaBoss>();
         if (scriptBola != null)
         {
             scriptBola.Configurar(direccion, velocidadBola);

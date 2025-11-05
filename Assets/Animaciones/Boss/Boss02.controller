@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: run
+  m_Name: runBoss
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -21,12 +21,12 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 52338f3e56ee1eb4a9957ed7b8fdc252, type: 2}
+  m_Motion: {fileID: 7400000, guid: b62e8a39984853c4a9ee8c7e4900b6b5, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: Boss02
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_TimeParameter: Boss02
 --- !u!1101 &-7641512698148715549
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -141,7 +141,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: idle
+  m_Name: idleBoss
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -155,7 +155,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: cf745bcad1426bf49b21df83cfc55280, type: 2}
+  m_Motion: {fileID: 7400000, guid: a98c6c30e0badf74d883d7650a46d08c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
