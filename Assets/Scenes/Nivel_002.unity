@@ -7072,7 +7072,15 @@ PrefabInstance:
     - target: {fileID: 5593704853174640236, guid: 8ae0994c87ca391419618aca47612380, type: 3}
       propertyPath: prefabBola
       value: 
-      objectReference: {fileID: 6673562693952533408, guid: f4667c370b6f9de479923a4c3b77cddf, type: 3}
+      objectReference: {fileID: 8708990105194654830, guid: e8b03122afa72d54187f6c31df0de506, type: 3}
+    - target: {fileID: 5593704853174640236, guid: 8ae0994c87ca391419618aca47612380, type: 3}
+      propertyPath: velocidadBola
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593704853174640236, guid: 8ae0994c87ca391419618aca47612380, type: 3}
+      propertyPath: distanciaAtaque
+      value: 12.08
+      objectReference: {fileID: 0}
     - target: {fileID: 5653644542063881235, guid: 8ae0994c87ca391419618aca47612380, type: 3}
       propertyPath: m_Name
       value: Boss
