@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6128436776057519055}
-  - component: {fileID: 6777348472001785677}
   m_Layer: 0
   m_Name: PlataformaAscensor 2
   m_TagString: Suelo
@@ -35,22 +34,6 @@ Transform:
   - {fileID: 1369283426822965232}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6777348472001785677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731452353774630046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d849220b5b7004b4889c8102934fa078, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puntoA: {fileID: 465140680621036159}
-  puntoB: {fileID: 1369283426822965232}
-  velocidad: 2
-  tiempoDeEspera: 1
 --- !u!1 &1612513081385906828
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,8 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d849220b5b7004b4889c8102934fa078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puntoA: {fileID: 0}
-  puntoB: {fileID: 0}
+  puntoA: {fileID: 465140680621036159}
+  puntoB: {fileID: 1369283426822965232}
   velocidad: 2
   tiempoDeEspera: 1
 --- !u!1 &4101217103641221326

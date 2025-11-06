@@ -373,7 +373,8 @@ public class BossController : MonoBehaviour
         Debug.Log("Boss derrotado 🐜💥");
 
         // Buscar y activar la plataforma de salida
-        PlataformaAscensor02 ascensor = FindFirstObjectByType<PlataformaAscensor02>();
+        //PlataformaAscensor02 ascensor = FindFirstObjectByType<PlataformaAscensor02>();
+        PlataformaAscensorSalida ascensor = FindFirstObjectByType<PlataformaAscensorSalida>();
         if (ascensor != null)
         {
             ascensor.enabled = true;
