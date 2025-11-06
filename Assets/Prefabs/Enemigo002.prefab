@@ -238,7 +238,7 @@ MonoBehaviour:
   distanciaAtaque: 5
   fuerzaEmpujeX: 5
   fuerzaEmpujeY: 2.5
-  velocidadX: 5
+  velocidadX: 4
   prefabBola: {fileID: 6673562693952533408, guid: f4667c370b6f9de479923a4c3b77cddf, type: 3}
   velocidadBola: 7
   bolasPorSegundo: 1

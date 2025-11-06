@@ -276,8 +276,8 @@ public class BossController : MonoBehaviour
                 transform.localScale = new Vector3(-direccion, 1, 1);
         }
 
-        if (bossAnimator)
-            bossAnimator.SetFloat("velocidad", Mathf.Abs(rb.linearVelocity.x));
+        //if (bossAnimator)
+        //    bossAnimator.SetFloat("velocidad", Mathf.Abs(rb.linearVelocity.x));
 
         // --- Ataque a distancia ---
         if (jugadorTransform && Vector2.Distance(jugadorTransform.position, transform.position) <= rangoDisparo)
