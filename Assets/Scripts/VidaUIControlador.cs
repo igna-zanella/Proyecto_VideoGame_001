@@ -83,7 +83,7 @@ public class VidaUIControlador : MonoBehaviour
 
         if (sliderVida != null)
         {
-            sliderVida.maxValue = vidaTotal;
+            sliderVida.maxValue = 10;
             sliderVida.value = vidaTotal;
         }
     }
