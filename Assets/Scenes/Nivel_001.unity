@@ -408,7 +408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc15fde0f72cd740bdeee3a3101196f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuSonido: {fileID: 1879333864}
+  jugador: {fileID: 0}
+  checkpointInicial: {x: 0, y: 0, z: 0}
   vidasTotales: 3
 --- !u!4 &48901173
 Transform:
@@ -71411,11 +71412,6 @@ PrefabInstance:
       addedObject: {fileID: 1295830370}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
---- !u!1 &1879333864 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5863857940750021692, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
-  m_PrefabInstance: {fileID: 1879333863}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1879333865 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4397934812783216912, guid: 54c3fad88cb70c942ad0353cad090c02, type: 3}
@@ -73588,6 +73584,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8717003346488289215, guid: 8f7f73494fb29b34fb6bb0d848fef57c, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717003346488289215, guid: 8f7f73494fb29b34fb6bb0d848fef57c, type: 3}
       propertyPath: VidaVisual
       value: 
       objectReference: {fileID: 1586987195}
@@ -73733,6 +73733,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 928841549}
     m_Modifications:
+    - target: {fileID: 2666757231048575621, guid: 2d3bd24aee33fbe4eb5b56b53343f357, type: 3}
+      propertyPath: puntoA.x
+      value: 181
+      objectReference: {fileID: 0}
     - target: {fileID: 3625414704718058399, guid: 2d3bd24aee33fbe4eb5b56b53343f357, type: 3}
       propertyPath: m_Name
       value: PlataformaMovil
