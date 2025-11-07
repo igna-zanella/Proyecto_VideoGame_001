@@ -93,6 +93,11 @@ public class VidaUIControlador : MonoBehaviour
         if (sliderVida != null)
         {
             sliderVida.value = vidaActual;
+                       
+        }
+        else
+        {
+            Debug.LogWarning("Error sin slider");
         }
     }
 
