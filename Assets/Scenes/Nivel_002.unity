@@ -105458,7 +105458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagenFin: {fileID: 363777952}
   overlayImage: {fileID: 0}
-  duracionCongelado: 8
+  duracionCongelado: 4.4
   duracionFadeOut: 2
 --- !u!61 &1833889966
 BoxCollider2D:
@@ -107966,6 +107966,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1879333865}
     m_Modifications:
     - target: {fileID: 196046725458932853, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
+      propertyPath: m_text
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 196046725458932853, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
       propertyPath: m_fontSize
       value: 40.7
       objectReference: {fileID: 0}
@@ -108068,6 +108072,10 @@ PrefabInstance:
     - target: {fileID: 5478857852370776795, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -83
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001437712897786481, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SalirJuego
       objectReference: {fileID: 0}
     - target: {fileID: 6775675949028912780, guid: 3dc8621e22e3b8745a03f486a1157f8f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -108421,6 +108429,10 @@ PrefabInstance:
     - target: {fileID: 2438276811538037872, guid: e1347d10e7c6d4f4187f9641605b94fb, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438276811538037872, guid: e1347d10e7c6d4f4187f9641605b94fb, type: 3}
+      propertyPath: velocidad
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6128436776057519055, guid: e1347d10e7c6d4f4187f9641605b94fb, type: 3}
       propertyPath: m_LocalPosition.x

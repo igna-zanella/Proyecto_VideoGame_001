@@ -16,10 +16,11 @@ public class MenuController : MonoBehaviour
     public void SalirJuego()
     {
         //Debug.LogWarning("Saliendo...");
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
+//#if UNITY_EDITOR
+//        UnityEditor.EditorApplication.isPlaying = false;
+//#endif
+        //Application.Quit();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuInicio");
     }
 
     // --- Submenús ---
