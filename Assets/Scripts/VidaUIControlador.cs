@@ -97,7 +97,7 @@ public class VidaUIControlador : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Error sin slider");
+            //Debug.LogWarning("Error sin slider");
         }
     }
 

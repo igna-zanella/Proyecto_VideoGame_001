@@ -108680,7 +108680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a883e75328b9846a6747e171350777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicaFondo: {fileID: 0}
+  musicaFondo: {fileID: 1713083685}
   musicaNivel1: {fileID: 8300000, guid: 46e8e94e5ce958548a81786f6ad7a0fa, type: 3}
   musicaNivel2: {fileID: 8300000, guid: faef8124682c7cd43b37344601cc5453, type: 3}
   duracionFade: 1.5
