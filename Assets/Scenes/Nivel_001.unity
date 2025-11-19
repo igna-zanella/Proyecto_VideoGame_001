@@ -73564,6 +73564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicaFondo: {fileID: 1713083685}
+  musicaInicio: {fileID: 8300000, guid: a188f3c0dda464a47b1993dbb4299525, type: 3}
   musicaNivel1: {fileID: 8300000, guid: 46e8e94e5ce958548a81786f6ad7a0fa, type: 3}
   musicaNivel2: {fileID: 8300000, guid: faef8124682c7cd43b37344601cc5453, type: 3}
   duracionFade: 1.5

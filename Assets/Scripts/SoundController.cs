@@ -29,6 +29,7 @@ public class SoundController : MonoBehaviour
 
     [Header("Audio general del juego")]
     [SerializeField] private AudioSource musicaFondo;
+    [SerializeField] private AudioClip musicaInicio;
     [SerializeField] private AudioClip musicaNivel1;
     [SerializeField] private AudioClip musicaNivel2;
 
@@ -86,7 +87,11 @@ public class SoundController : MonoBehaviour
 
         AudioClip clip = null;
 
-        if (nombreEscena == "Nivel_001")
+        if (nombreEscena == "MenuInicio")
+        {
+            clip = musicaInicio;
+        }
+        else if (nombreEscena == "Nivel_001")
         {
             clip = musicaNivel1;
         }
