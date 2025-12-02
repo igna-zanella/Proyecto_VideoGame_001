@@ -2674,7 +2674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3943742006058538608, guid: bbdd5d9e4a5e55f4caae51455feb7dda, type: 3}
       propertyPath: puntoA.x
-      value: 192
+      value: 194
       objectReference: {fileID: 0}
     - target: {fileID: 3943742006058538608, guid: bbdd5d9e4a5e55f4caae51455feb7dda, type: 3}
       propertyPath: puntoA.y
@@ -6535,8 +6535,12 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
-      propertyPath: bolasPorSegundo
+      propertyPath: velocidadBola
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
+      propertyPath: bolasPorSegundo
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: distanciaAtaque
@@ -8146,8 +8150,12 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
-      propertyPath: bolasPorSegundo
+      propertyPath: velocidadBola
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
+      propertyPath: bolasPorSegundo
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: distanciaAtaque
@@ -107929,11 +107937,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: rangoDisparo
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
+      propertyPath: velocidadBola
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: bolasPorSegundo
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6055890047487558133, guid: 49c57a4866cf50e4394454a631d12a76, type: 3}
       propertyPath: distanciaAtaque
@@ -108681,6 +108693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicaFondo: {fileID: 1713083685}
+  musicaInicio: {fileID: 0}
   musicaNivel1: {fileID: 8300000, guid: 46e8e94e5ce958548a81786f6ad7a0fa, type: 3}
   musicaNivel2: {fileID: 8300000, guid: faef8124682c7cd43b37344601cc5453, type: 3}
   duracionFade: 1.5
